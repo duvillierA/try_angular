@@ -28,17 +28,35 @@
 
     <!-- TUTORIAL : http://docs.angularjs.org/tutorial/ -->
     <div class="container">
-      <div ng-controller="PhoneListCtrl">
-        <ul>
-          <li ng-repeat="phone in phones">
-            {{phone.name}}
-            <p>{{phone.snippet}}</p>
-          </li>
-        </ul>
 
-      </div>
+        <div class="row" ng-controller="PhoneListCtrl">
+
+            <div class="col-md-4">
+                Search: <input ng-model="query">
+                <select ng-model="orderProp">
+                  <option value="name">Alphabetical</option>
+                  <option value="age">Newest</option>
+                </select>
+                {{orderProp}}
+            </div>
+
+            <div class="col-md-8">
+                <div>
+                    <ul>
+                        <li ng-repeat="phone in phones | filter:query | orderBy:orderProp">
+                        {{phone.name}} <br />
+                        {{phone.snippet}}
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <pre>{{phones | json}}</pre>
+
+        </div>
 
     </div>
+
 
     <!-- Google Analytics: c hange UA-XXXXX-X to be your site's ID -->
      <script>
