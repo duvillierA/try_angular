@@ -14,13 +14,13 @@
                     <ul class="list-unstyled">
                         <li class="row" ng-repeat="phone in phones | filter:query | orderBy:orderProp" >
                             <span class="col-xs-3 col-md-3">
-                                <a href="#/phones/{{phone.id}}" class="">
+                                <a href="/phones/{{phone.id}}" class="">
                                     <img ng-src="{{phone.imageUrl}}" class="img-thumbnail" />
 
                                 </a>
                             </span>
                             <span>
-                                <a href="#/phones/{{phone.id}}">
+                                <a href="/phones/{{phone.id}}">
                                     {{phone.name}}
                                 </a>
                                 {{phone.snippet}}
