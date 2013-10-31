@@ -1,11 +1,17 @@
 'use strict';
 
-var allinone = angular.module('allinone');
+var phoneControllers = angular.module('phoneControllers', []);
 
-allinone.controller('PhoneListCtrl',['$scope', '$http',
+phoneControllers.controller('PhoneListCtrl',['$scope', '$http',
 	function PhoneListCtrl ($scope, $http) {
 		$http.get('/phones.json').success(function(data) {
-			$scope.phones = data;
+			$scope.phones = data.splice(0,5);
 		});
 		$scope.orderProp = 'age';
+
   }]);
+
+phoneControllers.controller('PhoneDetailCtrl', ['$scope', '$routeParams',
+	function($scope, $routeParams) {
+		$scope.phoneId = $routeParams.phoneId;
+}]);

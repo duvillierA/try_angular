@@ -16,7 +16,7 @@
         <!-- endbuild -->
 </head>
   <!-- APP : All in one Profile -->
-  <body id="ng-app" ng-app="allinone">
+  <body id="ng-app" ng-app="phoneApp">
     <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
@@ -29,29 +29,7 @@
     <!-- TUTORIAL : http://docs.angularjs.org/tutorial/ -->
     <div class="container">
 
-        <div class="row" ng-controller="PhoneListCtrl">
-
-            <div class="col-md-4">
-                Search: <input ng-model="query">
-                <select ng-model="orderProp">
-                  <option value="name">Alphabetical</option>
-                  <option value="age">Newest</option>
-                </select>
-                {{orderProp}}
-            </div>
-
-            <div class="col-md-8">
-                <div>
-                    <ul>
-                        <li ng-repeat="phone in phones | filter:query | orderBy:orderProp">
-                        {{phone.name}} <br />
-                        {{phone.snippet}}
-                        </li>
-                    </ul>
-                </div>
-            </div>
-
-            <pre>{{phones | json}}</pre>
+        <div ng-view="">
 
         </div>
 
@@ -71,6 +49,7 @@
 
     <script src="bower_components/jquery/jquery.js"></script>
     <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-route/angular-route.js"></script>
 
         <!-- build:js scripts/plugins.js -->
         <script src="bower_components/bootstrap-sass/js/affix.js"></script>
@@ -81,7 +60,6 @@
         <script src="bower_components/bootstrap-sass/js/transition.js"></script>
         <script src="bower_components/bootstrap-sass/js/button.js"></script>
         <script src="bower_components/bootstrap-sass/js/popover.js"></script>
-        <script src="bower_components/bootstrap-sass/js/typeahead.js"></script>
         <script src="bower_components/bootstrap-sass/js/carousel.js"></script>
         <script src="bower_components/bootstrap-sass/js/scrollspy.js"></script>
         <script src="bower_components/bootstrap-sass/js/collapse.js"></script>

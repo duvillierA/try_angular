@@ -1,12 +1,15 @@
 'use strict';
 
-var allinone = angular.module('allinone', []);
+var phoneApp = angular.module('phoneApp', ['ngRoute','phoneControllers']);
 
-allinone.config(function ($routeProvider) {
-  $routeProvider.when('/', {templateUrl: 'views/main.html',controller: 'PhoneListCtrl'});
-  $routeProvider.when('/twitter', {templateUrl: 'views/twitter.html', controller: 'twitter'});
-  $routeProvider.when('/google+', {templateUrl: 'views/google.html', controller: 'google'});
-  $routeProvider.when('/github', {templateUrl: 'views/github.html', controller: 'github'});
-  $routeProvider.when('/gravatar', {templateUrl: 'views/gravatar.html', controller: 'gravatar'});
-  $routeProvider.otherwise({redirectTo: '/'});
-});
+phoneApp.config(['$routeProvider', function($routeProvider) {
+	$routeProvider.when('/twitter', {templateUrl: 'views/twitter.html', controller: 'twitter'});
+	$routeProvider.when('/google+', {templateUrl: 'views/google.html', controller: 'google'});
+	$routeProvider.when('/github', {templateUrl: 'views/github.html', controller: 'github'});
+	$routeProvider.when('/gravatar', {templateUrl: 'views/gravatar.html', controller: 'gravatar'});
+
+	$routeProvider.when('/phones', {templateUrl: 'views/phone-list.html',controller: 'PhoneListCtrl'});
+	$routeProvider.when('/phones/:phoneId', {templateUrl: 'views/phone-detail.html', controller: 'PhoneDetailCtrl'});
+
+	$routeProvider.otherwise({redirectTo: '/phones'});
+}]);
