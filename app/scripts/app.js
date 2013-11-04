@@ -1,23 +1,18 @@
 'use strict';
 
-var phoneApp = angular.module('phoneApp', ['ngRoute','phoneControllers','phonecatFilters']);
+var profile = angular.module('profile', [
+  'ngRoute',
+  'ngAnimate',
+  'profileControllers',
+  'profileFilters',
+  'profileDirectives',
+  'profileServices']
+);
 
-phoneApp.config(['$routeProvider','$locationProvider', function($routeProvider, $locationProvider) {
-	$routeProvider.when('/twitter', {templateUrl: 'views/twitter.html', controller: 'twitter'});
-	$routeProvider.when('/google+', {templateUrl: 'views/google.html', controller: 'google'});
-	$routeProvider.when('/github', {templateUrl: 'views/github.html', controller: 'github'});
-	$routeProvider.when('/gravatar', {templateUrl: 'views/gravatar.html', controller: 'gravatar'});
+profile.config(['$routeProvider','$locationProvider', function($routeProvider, $locationProvider) {
 
-	$routeProvider.when('/phones', {templateUrl: '/views/phone-list.html',controller: 'PhoneListCtrl'});
-	$routeProvider.when('/phones/:phoneId', {templateUrl: '/views/phone-detail.html', controller: 'PhoneDetailCtrl'});
+	$routeProvider.when('/', {templateUrl: 'views/profile.html', controller: 'profileCtrl'});;
+	$routeProvider.otherwise({redirectTo: '/'});
 
-	$routeProvider.otherwise({redirectTo: '/phones'});
-
-	$locationProvider.html5Mode(true);
+	$locationProvider.html5Mode(false);
 }]);
-
-angular.module('phonecatFilters', []).filter('checkmark', function() {
-  return function(input) {
-    return input ? '\u2713' : '\u2718';
-  };
-});
