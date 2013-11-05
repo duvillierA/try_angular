@@ -5,8 +5,9 @@ var profile = angular.module('profile', [
   'ngAnimate',
   'profileControllers',
   'profileFilters',
-  'profileDirectives',
-  'profileServices']
+  'profileServices',
+  'gravatarDirectives',
+  'apiDirectives']
 );
 
 profile.config(['$routeProvider','$locationProvider', function($routeProvider, $locationProvider) {

@@ -1,8 +1,28 @@
-var phoneServices = angular.module('profileServices', ['ngResource']);
+var profileServices = angular.module('profileServices', ['ngResource']);
 
-phoneServices.factory('github', ['$resource',
-  function($resource){
-    return $resource('/:phoneId.json', {}, {
-      getAll: {method:'GET', params:{phoneId:'phones'}, isArray:true}
-    });
-  }]);
+profileServices.factory('github', ['$resource',
+	function($resource){
+		return $resource('https://api.github.com/users/:account/:type', {});
+	}
+]);
+
+/*profileServices.factory('githubStarred', ['$resource',
+	function($resource){
+		return $resource('https://api.github.com/users/:account/starred', {});
+	}
+]);
+
+profileServices.factory('githubFollowers', ['$resource',
+	function($resource){
+		return $resource('https://api.github.com/users/:account/followers', {});
+	}
+]);
+
+
+profileServices.factory('gitstList', ['$resource',
+	function($resource){
+		return $resource('https://api.github.com/users/:account/gists', {});
+	}
+]);
+
+*/
