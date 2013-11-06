@@ -4,63 +4,63 @@ apiDirectives
 	.directive('directiveGithub', function(){
 		return {
 			restrict: 'A',
-			scope: {
-				account: "@"
-			},
 	  		templateUrl: 'views/github.html',
+        scope:true, // create a new scope (isolate) available by all child directives
+        controller : function ($scope) {
+          $scope.tab = "repos";
+          $scope.activeTab= function (tab) {
+            $scope.tab = tab;
+          }
+        },
 	  		link: function (scope, element, attrs) {
-	  			scope.getRepos = function(){};
-	  			scope.getStarred = function(){};
+          /* {{account}} is available by child directives */
+          scope.account = attrs.account;
 	  		}
 		}
 	})
 	.directive('directiveGithubRepos',  ['github', function(github){
 		return {
 			restrict: 'A',
-			scope : {
-				repositories: "&",
-				account: "@"
-			},
+      scope:true,
 	  		templateUrl: 'views/githubRepos.html',
 	  		link: function (scope, element, attrs) {
-	  			github.query({
-	  				account:scope.account,
-	  				type:"repos"
-	  			}, function (data) {
-	  				if(!data) return;
-		  			scope.repositories = data;
-		  			scope.orderProp = "fork";
-	  			})
+          scope.$watch('tab', function(activetab, oldTab) {
+            //console.log("tab from directiveGithubRepos", activetab, oldTab);
+            github.query({
+              account:scope.account,
+              type:"repos"
+            }, function (data) {
+              if(!data) return;
+              scope.repositories = data;
+              scope.orderProp = "fork";
+            })
+          });
 	  		}
 		}
 	}])
 	.directive('directiveGithubStarred',  ['github', function(github){
 		return {
 			restrict: 'A',
-			scope : {
-				starred: "&",
-				account: "@"
-			},
+      scope:true,
 	  		templateUrl: 'views/githubRepos.html',
 	  		link: function (scope, element, attrs) {
-	  			github.query({
-	  				account:scope.account,
-	  				type:"starred"
-	  			}, function (data) {
-	  				if(!data) return;
-		  			scope.repositories = data;
-		  			scope.orderProp = "watchers";
-	  			})
-	  		}
+          scope.$watch('tab', function(activetab, oldTab) {
+            //console.log("tab from directiveGithubRepos", activetab, oldTab);
+            github.query({
+              account:scope.account,
+              type:"starred"
+            }, function (data) {
+              if(!data) return;
+              scope.repositories = data;
+              scope.orderProp = "fork";
+            })
+          });
+        }
 		}
 	}])
 	.directive('directiveGithubFollowers',  ['github', function(github){
 		return {
 			restrict: 'A',
-			scope : {
-				starred: "&",
-				account: "@"
-			},
 	  		templateUrl: 'views/githubFollowers.html',
 	  		link: function (scope, element, attrs) {
 	  			github.query({
@@ -77,10 +77,6 @@ apiDirectives
 	.directive('directiveGithubGists',  ['github', function(github){
 		return {
 			restrict: 'A',
-			scope : {
-				starred: "&",
-				account: "@"
-			},
 	  		templateUrl: 'views/githubGists.html',
 	  		link: function (scope, element, attrs) {
 	  			github.query({

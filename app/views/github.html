@@ -1,13 +1,29 @@
-<h2>Github</h2>
 
-<h3>Popular Repositories</h3>
 
-<div data-directive-github-repos data-account="{{account}}"></div>
+<div>
+{{tab}}
 
-<h3>Starred Repositories</h3>
+	<a ng-click="activeTab('repos')">Repositories</a>
+	<a ng-click="activeTab('starred')">Starred</a>
 
-<div data-directive-github-starred data-account="{{account}}"></div>
+	<h2>Github</h2>
+<div ng-switch="tab">
+	<div ng-switch-when="repos">
+		<h3>Popular Repositories</h3>
+		<div data-directive-github-repos></div>
+	</div>
+	<div ng-switch-when="starred">
+		<h3>Starred Repositories</h3>
+		<div data-directive-github-starred></div>
+	</div>
 
-<div data-directive-github-followers data-account="{{account}}"></div>
+	<div ng-switch-when="followers">
+		<div data-directive-github-followers></div>
+	</div>
 
-<div data-directive-github-gists data-account="{{account}}"></div>
+	<div ng-switch-when="gists">
+		<div data-directive-github-gists></div>
+	</div>
+</div>
+
+</div>
