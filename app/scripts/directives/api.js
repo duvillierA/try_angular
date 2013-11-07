@@ -22,72 +22,53 @@ apiDirectives
 		return {
 			restrict: 'A',
       scope:true,
-	  		templateUrl: 'views/githubRepos.html',
-	  		link: function (scope, element, attrs) {
-          scope.$watch('tab', function(activetab, oldTab) {
-            //console.log("tab from directiveGithubRepos", activetab, oldTab);
-            github.query({
-              account:scope.account,
-              type:"repos"
-            }, function (data) {
-              if(!data) return;
-              scope.repositories = data;
-              scope.orderProp = "fork";
-            })
-          });
-	  		}
-		}
-	}])
-	.directive('directiveGithubStarred',  ['github', function(github){
-		return {
-			restrict: 'A',
-      scope:true,
-	  		templateUrl: 'views/githubRepos.html',
-	  		link: function (scope, element, attrs) {
-          scope.$watch('tab', function(activetab, oldTab) {
-            //console.log("tab from directiveGithubRepos", activetab, oldTab);
-            github.query({
-              account:scope.account,
-              type:"starred"
-            }, function (data) {
-              if(!data) return;
-              scope.repositories = data;
-              scope.orderProp = "fork";
-            })
-          });
-        }
+  		templateUrl: 'views/githubRepos.html',
+  		link: function (scope, element, attrs) {
+        github.query({
+          account:scope.account,
+          type:attrs.type
+        }, function (data) {
+          if(!data) return;
+          scope.type = attrs.type;
+          scope.orderProp = "watchers";
+          scope.repositories = data;
+          scope.count = data.length;
+        });
+      }
 		}
 	}])
 	.directive('directiveGithubFollowers',  ['github', function(github){
 		return {
 			restrict: 'A',
-	  		templateUrl: 'views/githubFollowers.html',
-	  		link: function (scope, element, attrs) {
-	  			github.query({
-	  				account:scope.account,
-	  				type:"followers"
-	  			}, function (data) {
-	  				if(!data) return;
-		  			scope.repositories = data;
-		  			scope.orderProp = "watchers";
-	  			})
-	  		}
+      scope:true,
+      templateUrl: 'views/githubFollowers.html',
+      link: function (scope, element, attrs) {
+      	github.query({
+      		account:scope.account,
+      		type:"followers"
+      	}, function (data) {
+      		if(!data) return;
+      		scope.followers = data;
+          scope.count = data.length;
+      	})
+      }
 		}
 	}])
 	.directive('directiveGithubGists',  ['github', function(github){
 		return {
 			restrict: 'A',
-	  		templateUrl: 'views/githubGists.html',
-	  		link: function (scope, element, attrs) {
-	  			github.query({
-	  				account:scope.account,
-	  				type:"gists"
-	  			}, function (data) {
-	  				if(!data) return;
-		  			scope.repositories = data;
-		  			scope.orderProp = "watchers";
-	  			})
-	  		}
+      scope:true,
+      templateUrl: 'views/githubGists.html',
+      link: function (scope, element, attrs) {
+      	github.query({
+      		account:scope.account,
+      		type:"gists"
+      	}, function (data) {
+      		if(!data) return;
+      		scope.gists = data;
+          scope.count = data.length;
+      	})
+      }
 		}
 	}])
 ;

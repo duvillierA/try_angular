@@ -4,7 +4,7 @@ profileDirectives.directive('directiveGravatar', function() {
 	return {
 		restrict: 'A',
 		scope:true,
-  		template: '<img ng-src="http://www.gravatar.com/avatar/{{hash}}?s={{size}}" width="{{size}}" height="{{size}}"/>',
+  		template: '<img class="img-circle" ng-src="http://www.gravatar.com/avatar/{{hash}}?s={{size}}" width="{{size}}" height="{{size}}"/>',
   		link: function (scope, element, attrs) {
   			scope.hash = md5(attrs.email);
   			scope.size = attrs.size;

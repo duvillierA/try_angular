@@ -1,0 +1,12 @@
+<p>
+	<span ng-if="count">
+		{{count}} snippets of code
+	</span>
+</p>
+
+
+<ul>
+	<li ng-repeat="gist in gists" ng-if="gist.description">
+		<a href="{{gist.html_url}}"><strong>{{gist.description}}</strong></a>
+	</li>
+</ul>

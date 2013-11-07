@@ -1,29 +1,35 @@
+<div id="github-view">
 
+	<h2>Github <small>and me!</small></h2>
 
-<div>
-{{tab}}
+	<ul class="nav nav-tabs">
+		<li ng-class="{active:tab==='repos'}">
+			<a ng-click="activeTab('repos')">Repositories</a>
+		</li>
+		<li ng-class="{active:tab==='gists'}">
+			<a ng-click="activeTab('gists')">Gists</a>
+		</li>
+		<li ng-class="{active:tab==='starred'}">
+			<a ng-click="activeTab('starred')">Starred</a>
+		</li>
+		<li ng-class="{active:tab==='followers'}">
+			<a ng-click="activeTab('followers')">followers</a>
+		</li>
+	</ul>
 
-	<a ng-click="activeTab('repos')">Repositories</a>
-	<a ng-click="activeTab('starred')">Starred</a>
-
-	<h2>Github</h2>
-<div ng-switch="tab">
-	<div ng-switch-when="repos">
-		<h3>Popular Repositories</h3>
-		<div data-directive-github-repos></div>
+	<div ng-switch="tab">
+		<div ng-switch-when="repos">
+			<div data-directive-github-repos data-type="repos"></div>
+		</div>
+		<div ng-switch-when="gists">
+			<div data-directive-github-gists></div>
+		</div>
+		<div ng-switch-when="starred">
+			<div data-directive-github-repos data-type="starred"></div>
+		</div>
+		<div ng-switch-when="followers">
+			<div data-directive-github-followers></div>
+		</div>
 	</div>
-	<div ng-switch-when="starred">
-		<h3>Starred Repositories</h3>
-		<div data-directive-github-starred></div>
-	</div>
-
-	<div ng-switch-when="followers">
-		<div data-directive-github-followers></div>
-	</div>
-
-	<div ng-switch-when="gists">
-		<div data-directive-github-gists></div>
-	</div>
-</div>
 
 </div>

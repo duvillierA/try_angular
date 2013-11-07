@@ -1,5 +1,12 @@
+<p>
+	<span ng-if="count">
+		Following by {{count}} peoples
+	</span>
+</p>
+
+
 <ul>
-	<li ng-repeat="person in followers | orderBy:orderProp:true">
+	<li ng-repeat="person in followers">
 		<img ng-src="{{person.avatar_url}}" width="40" height="40"/>
 		<a href="{{person.html_url}}"><strong>{{person.login}}</strong></a>
 	</li>

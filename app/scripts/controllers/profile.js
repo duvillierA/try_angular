@@ -5,9 +5,11 @@ var profileControllers = angular.module('profileControllers', []);
 profileControllers.controller('profileCtrl', ['$scope','$routeParams',
 	function avatar ($scope, $routeParams) {
 		$scope.profile = {
-			email: "tom@thau.me",
+			firstname : "Antoine",
+			name : "Duvillier",
+			email: "duvillierantoine@gmail.com",
 			account : {
-				github : "thaume"
+				github : "duvillierA"
 			}
 		}
 	}
