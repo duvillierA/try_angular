@@ -3,13 +3,11 @@ var profileDirectives = angular.module('gravatarDirectives', []);
 profileDirectives.directive('directiveGravatar', function() {
 	return {
 		restrict: 'A',
-		scope: {
-			email :'@', // @ > Store the string associated by hash
-			size :'@' //  @ > Store the string associated by size
-		},
+		scope:true,
   		template: '<img ng-src="http://www.gravatar.com/avatar/{{hash}}?s={{size}}" width="{{size}}" height="{{size}}"/>',
   		link: function (scope, element, attrs) {
-  			scope.hash = md5(scope.email);
+  			scope.hash = md5(attrs.email);
+  			scope.size = attrs.size;
   		}
 	};
 });
