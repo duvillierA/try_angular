@@ -12,5 +12,8 @@ profileControllers.controller('profileCtrl', ['$scope','$routeParams',
 				github : "duvillierA"
 			}
 		}
+		$scope.init = function() {
+			console.log('init profileControllers');
+		}
 	}
 ]);

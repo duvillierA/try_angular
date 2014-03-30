@@ -12,7 +12,7 @@ var profile = angular.module('profile', [
 
 profile.config(['$routeProvider','$locationProvider', function($routeProvider, $locationProvider) {
 
-	$routeProvider.when('/', {templateUrl: 'views/profile.html', controller: 'profileCtrl'});;
+	$routeProvider.when('/', {templateUrl: 'views/profile.html', controller: 'profileCtrl'});
 	$routeProvider.otherwise({redirectTo: '/'});
 
 	$locationProvider.html5Mode(false);
